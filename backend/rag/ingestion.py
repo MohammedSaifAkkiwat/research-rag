@@ -23,7 +23,7 @@ class DocumentIngester:
 
     def __init__(self, google_api_key: str):
         self.embeddings = GoogleGenerativeAIEmbeddings(
-            model="models/text-embedding-001",
+            model="models/gemini-embedding-001",
             google_api_key=google_api_key
         )
         self.splitter = RecursiveCharacterTextSplitter(
