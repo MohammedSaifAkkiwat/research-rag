@@ -1,0 +1,25 @@
+# Environment — NEVER commit this
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+venv/
+.venv/
+env/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# Data — these are generated, not source code
+chroma_db/
+uploads/
+paper_registry.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
