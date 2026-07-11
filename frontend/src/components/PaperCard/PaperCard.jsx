@@ -9,11 +9,11 @@ import { cn } from "../../utils/cn";
  * the exact backend schema for optional metadata may vary slightly.
  */
 export function PaperCard({ paper, selected, onSelect, index = 0 }) {
-  const name = paper.paper_name || paper.name || paper.title || "Untitled paper";
+  const name = paper.filename || paper.paper_name || paper.name || paper.title || "Untitled paper";
   const pages = paper.num_pages ?? paper.pages ?? null;
   const chunks = paper.num_chunks ?? paper.chunks ?? null;
   const status = paper.status || "indexed";
-  const uploadedAt = paper.uploaded_at || paper.created_at || paper.date;
+  const uploadedAt = paper.upload_time || paper.uploaded_at || paper.created_at || paper.date;
 
   return (
     <motion.button
