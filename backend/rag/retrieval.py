@@ -4,6 +4,7 @@ from langchain_chroma import Chroma
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_community.retrievers import BM25Retriever
 from langchain_classic.retrievers import EnsembleRetriever
+from langchain_core.documents import Document
 
 MAX_BM25_CORPUS = 10000  # safety cap when pulling a whole collection into memory for BM25
 
@@ -35,7 +36,11 @@ class HybridRetriever:
             collection_name=f"paper_{paper_id}"
         )
 
-        all_results = vectorstore.similarity_search("", k=MAX_BM25_CORPUS)
+        raw = vectorstore.get(limit=MAX_BM25_CORPUS)
+        all_results = [
+            Document(page_content=content, metadata=metadata or {})
+            for content, metadata in zip(raw.get("documents", []), raw.get("metadatas", []))
+        ]
 
         if not all_results:
             return []
