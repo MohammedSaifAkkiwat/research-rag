@@ -26,7 +26,7 @@
 
 <br/>
 
-**[🚀 Live Demo](https://YOUR_FRONTEND_URL.vercel.app)** &nbsp;·&nbsp; **[📖 Interactive API Docs](https://YOUR_BACKEND_URL.onrender.com/docs)** &nbsp;·&nbsp; **[📋 Deployment Guide](DEPLOYMENT.md)** &nbsp;·&nbsp; **[🐛 Report Bug](https://github.com/MohammedSaifAkkiwat/research-rag/issues)**
+**[🚀 Live Demo](https://research-hybrid-rag.vercel.app/)** &nbsp;·&nbsp; **[📖 Interactive API Docs](https://research-rag-grjn.onrender.com/docs)** &nbsp;·&nbsp; **[📋 Deployment Guide](DEPLOYMENT.md)** &nbsp;·&nbsp; **[🐛 Report Bug](https://github.com/MohammedSaifAkkiwat/research-rag/issues)**
 
 <br/>
 
@@ -85,7 +85,7 @@ You can also leave no paper selected in the chat and ask a question across **eve
 ║  (chunk_size=500, overlap=50)   → Character-aware boundary split ║
 ║     │                                                            ║
 ║     ▼                                                            ║
-║  Google Generative AI Embeddings → text-embedding-004 (hosted)   ║
+║  Google Generative AI Embeddings → gemini-embedding-001 (hosted) ║
 ║  (langchain-google-genai)          no local model download       ║
 ║     │                                                            ║
 ║     ▼                                                            ║
@@ -164,7 +164,7 @@ Most tutorials stop at vector search. Here's why that's not enough:
 | **ASGI Server** | Uvicorn | Production-grade async server for FastAPI |
 | **PDF Parsing** | PyPDF (`PyPDFLoader`) | Reliable text + page metadata extraction |
 | **Chunking** | LangChain `RecursiveCharacterTextSplitter` | Respects natural text boundaries |
-| **Embeddings** | Google `text-embedding-004` (hosted API) | No local model download — keeps the container lightweight enough for Render's free-tier RAM limit |
+| **Embeddings** | Google `gemini-embedding-001` (hosted API) | No local model download — keeps the container lightweight enough for Render's free-tier RAM limit |
 | **Vector Store** | ChromaDB | Local HNSW index, per-collection isolation, no separate server needed |
 | **Keyword Search** | BM25 (`rank-bm25`) | Gold standard sparse retrieval, handles exact terms |
 | **Fusion** | `EnsembleRetriever` (RRF) | Proven merging algorithm, no training required |
@@ -177,15 +177,15 @@ Most tutorials stop at vector search. Here's why that's not enough:
 | **Backend Hosting** | Render | Free tier, Docker support, auto-deploy from GitHub |
 | **Frontend Hosting** | Vercel | Free tier, Vite-optimized, global CDN |
 
-> **Note:** Earlier versions of this project used a locally-loaded HuggingFace embedding model (`all-MiniLM-L6-v2`) and a locally-loaded cross-encoder reranker (`BAAI/bge-reranker-base`). Both were replaced with hosted APIs (Google embeddings + Cohere rerank) because the local models pushed memory usage past Render's 512MB free-tier limit. Both `GOOGLE_API_KEY` and `COHERE_API_KEY` are required for the backend to run — both have generous free tiers (Cohere's trial key gives 1,000 API calls/month, which resets monthly and comfortably covers demo/portfolio traffic).
+> **Note:** Earlier versions of this project used a locally-loaded HuggingFace embedding model (`all-MiniLM-L6-v2`) and a locally-loaded cross-encoder reranker (`BAAI/bge-reranker-base`). Both were replaced with hosted APIs (Google embeddings + Cohere rerank) because the local models pushed memory usage past Render's 512MB free-tier limit. The embedding model was later migrated again, from `text-embedding-004` to `gemini-embedding-001`, after Google deprecated the former. Both `GOOGLE_API_KEY` and `COHERE_API_KEY` are required for the backend to run — both have generous free tiers (Cohere's key gives 1,000 API calls/month, which resets monthly and comfortably covers demo/portfolio traffic).
 
 ---
 
 ## API Reference
 
-Base URL: `https://YOUR_BACKEND_URL.onrender.com`
+Base URL: `https://research-rag-grjn.onrender.com`
 
-Interactive docs (Swagger UI): `https://YOUR_BACKEND_URL.onrender.com/docs`
+Interactive docs (Swagger UI): `https://research-rag-grjn.onrender.com/docs`
 
 ### `POST /upload`
 
